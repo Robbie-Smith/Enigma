@@ -1,6 +1,6 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require './lib/key_gen'
+require 'minitest/autorun'  # => true
+require 'minitest/pride'    # => true
+require './lib/key_gen'     # ~> LoadError: cannot load such file -- ./lib/key_gen
 
 class KeyGenTest < Minitest::Test
 
@@ -26,3 +26,10 @@ class KeyGenTest < Minitest::Test
   end
 
 end
+
+# ~> LoadError
+# ~> cannot load such file -- ./lib/key_gen
+# ~>
+# ~> /usr/local/Cellar/ruby/2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+# ~> /usr/local/Cellar/ruby/2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+# ~> /Users/robertsmith/Turing/1module/Enigma/test/key_gen_test.rb:3:in `<main>'

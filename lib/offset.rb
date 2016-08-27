@@ -1,4 +1,5 @@
 require 'pry'
+require 'matrix'
 class Offset
   attr_reader :square
   def initialize
@@ -11,14 +12,14 @@ class Offset
       date = @time.strftime("%d%m%y").to_i
       @square = date ** 2
     end
-    return
+    return @square
   end
 
   def offset
     square_string = @square.to_s.chars
     square_drop = square_string.drop(7)
     @offset = square_drop.map {|num| num.to_i}
-    return
+    return @offset
   end
 end
 
