@@ -1,16 +1,16 @@
-require 'pry'  # => true
+require 'pry'
 
 class KeyGen
-attr_reader :key  # => nil
+attr_reader :key
 
   def key_gen
-    initial_numbers = [*1..5]           # => [1, 2, 3, 4, 5]
-    key = initial_numbers.map do |num|  # => [1, 2, 3, 4, 5]
-      rand(9)                           # => 8, 0, 2, 3, 5
-    end                                 # => [8, 0, 2, 3, 5]
-    return key                          # => [8, 0, 2, 3, 5]
-  end                                   # => :key_gen
-end                                     # => :key_gen
+    key = [*1..5]
+    key.map! do |num|
+      rand(9)
+    end
+    return key
+  end
+end
 
-enigma = KeyGen.new  # => #<KeyGen:0x007fc96a99ad78>
-enigma.key_gen       # => [8, 0, 2, 3, 5]
+enigma = KeyGen.new
+enigma.key_gen
