@@ -13,5 +13,9 @@ class EncryptTest < Minitest::Test
     assert_instance_of Encryptor, @encryptor
   end
 
+  def test_that_encryptor_a_letter
+    
+  end
+
 
 end

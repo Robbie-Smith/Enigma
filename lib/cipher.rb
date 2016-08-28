@@ -94,10 +94,8 @@ class Cipher
     uppercase_letter = letter.upcase
     rotate_d[uppercase_letter]
   end
-binding.pry
+
 
 end
 
 @cipher = Cipher.new
-
-binding.pry
