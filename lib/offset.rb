@@ -1,20 +1,28 @@
 require 'pry'
 require 'time'
 
-class Offsets
+class Offset
+  attr_reader :time
 
+  def intialize
+    @time = Time.new
+  end
 
 
   def todays_date
-    time = Time.new.to_a
+    time = Time.new
   end
 
-  def offset_date(index)
-    todays_date.fetch(index)
+  def offset_date
+    todays_date.strftime("%m%d%y")
+  end
+
+  def offset_split
+    offset_date.split(%r{\s*})
   end
 
   def offset_joined
-     offset_num = [offset_date(4), offset_date(3), offset_date(5)].join
+     offset_num = offset_split.join
   end
 
   def offset_squared
@@ -24,10 +32,12 @@ class Offsets
   def offset
     squared = offset_squared
     offset_string = squared.to_s.chars
-    offset_string.last(4).join.to_i
+    offset_string.last(4)
   end
+
 
 
 end
 
-x = Offsets.new
+@offset = Offset.new
+# binding.pry

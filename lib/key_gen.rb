@@ -1,6 +1,6 @@
 require 'pry'
 
-class KeyGen
+class Keygen
 
   def key_gen
     the_array = [*0..9]
@@ -9,13 +9,18 @@ class KeyGen
     three_key = the_array.sample(1)
     four_key = the_array.sample(1)
     five_key = the_array.sample(1)
-    the_key = [[[one_key]+[two_key]+[three_key]+[four_key]+[five_key]].join.to_i]
+    the_key = [[one_key]+[two_key]+[three_key]+[four_key]+[five_key]].join
   end
-  binding.pry
+  # binding.pry
+
+  def keygen_a
+    key = key_gen.split(%r{\s*})
+
+  end
 
 
 
 end
 
-enigma = KeyGen.new
-binding.pry
+@keygen = Keygen.new
+# binding.pry
