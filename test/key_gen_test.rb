@@ -1,34 +1,35 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require './lib/key_gen'
+require 'minitest/autorun'  # => true
+require 'minitest/pride'    # => true
+require './lib/key_gen'     # ~> LoadError: cannot load such file -- ./lib/key_gen
 
 class KeyGenTest < Minitest::Test
 
-  def test_can_find_number_in_array
-    skip
-    #test to check for number in 0-9 array
+  def test_generate_an_array_of_numbers
     enigma = KeyGen.new
-    assert enigma.key_gen.include?(5)
+    enigma.key_gen
+    assert_instance_of Array, enigma.key_gen
   end
 
-  def test_can_pull_number_out_of_array
-    skip
-    #test to check if can pull out number into array
+  def test_length_of_array
     enigma = KeyGen.new
-    assert_equal [*0..9], enigma.key_gen
+    enigma.key_gen
+
+    assert_equal 5, enigma.key_gen.length
   end
 
-  def test_can_join_two_digit_array
+  def test_random
     skip
-    #test if we can join two numbers in an array
     enigma = KeyGen.new
-    assert_equal [*0..9], enigma.key_gen
-  end
+    enigma.key_gen
 
-  def test_if_can_join_arrays
-    #test if we can join the_key
-    enigma = KeyGen.new
-    assert_equal [*0..9], enigma.key_gen
+    assert_instance_of Random, enigma.key_gen
   end
 
 end
+
+# ~> LoadError
+# ~> cannot load such file -- ./lib/key_gen
+# ~>
+# ~> /usr/local/Cellar/ruby/2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+# ~> /usr/local/Cellar/ruby/2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+# ~> /Users/robertsmith/Turing/1module/Enigma/test/key_gen_test.rb:3:in `<main>'

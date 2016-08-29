@@ -1,62 +1,23 @@
-require 'pry'
-<<<<<<< HEAD
+require 'pry'  # => true
+
 class Offset
-  attr_reader :square
+  attr_reader :square, :date #:offset, :date  # => nil
   def initialize
-    @square = []
-    # @offset = offset
-    @time = Time.new
-  end
+    @time = Time.new  # => 2016-08-29 11:13:31 -0600
+  end                 # => :initialize
 
   def squaring_function
-    @square
-    if @square.empty?
-      num = @time.strftime("%d%m%y").to_i
-      @square << num ** 2
-    end
-    return @square
-  end
-
-  # def offset
-  #   @square = square.to_s
-  #   @offset = @square.drop_while {|i| i < 6}
-  #   return @offset
-  # end
-end
-
-o = Offset.new
-o.squaring_function
-=======
-require 'time'
-
-class Offsets
-
-
-
-  def todays_date
-    time = Time.new.to_a
-  end
-
-  def offset_date(index)
-    todays_date.fetch(index)
-  end
-
-  def offset_joined
-     offset_num = [offset_date(4), offset_date(3), offset_date(5)].join
-  end
-
-  def offset_squared
-    offset_joined.to_i ** 2
-  end
+      @date = @time.strftime("%d%m%y").to_i  # => 290816
+      @square = date ** 2                    # => 84573945856
+  end                                        # => :squaring_function
 
   def offset
-    squared = offset_squared
-    offset_string = squared.to_s.chars
-    offset_string.last(4).join.to_i
-  end
+    square_string = @square.to_s.chars  # => ["8", "4", "5", "7", "3", "9", "4", "5", "8", "5", "6"]
+    @offset = square_string.drop(7)     # => ["5", "8", "5", "6"]
+    @offset.map! {|num| num.to_i}       # => [5, 8, 5, 6]
+  end                                   # => :offset
+end                                     # => :offset
 
-
-end
-
-x = Offsets.new
->>>>>>> 96ce318895b41da9b301e9e0bc6b6be84596351a
+o = Offset.new       # => #<Offset:0x007ffe82884d60 @time=2016-08-29 11:13:31 -0600>
+o.squaring_function  # => 84573945856
+o.offset             # => [5, 8, 5, 6]
