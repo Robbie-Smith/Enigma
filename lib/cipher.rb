@@ -45,7 +45,6 @@ class Cipher
 
   def rotate_a
     rotation = a_value[0]
-    # characters = ('A'..'Z').to_a
     rotated_characters = alpha.rotate(rotation)
     pairs = alpha.zip(rotated_characters)
     Hash[pairs]
@@ -53,7 +52,6 @@ class Cipher
 
   def rotate_b
     rotation = b_value[0]
-    # characters = ('A'..'Z').to_a
     rotated_characters = alpha.rotate(rotation)
     pairs = alpha.zip(rotated_characters)
     Hash[pairs]
@@ -61,7 +59,6 @@ class Cipher
 
   def rotate_c
     rotation = c_value[0]
-    # characters = ('A'..'Z').to_a
     rotated_characters = alpha.rotate(rotation)
     pairs = alpha.zip(rotated_characters)
     Hash[pairs]
@@ -69,7 +66,6 @@ class Cipher
 
   def rotate_d
     rotation = d_value[0]
-    # characters = ('A'..'Z').to_a
     rotated_characters = alpha.rotate(rotation)
     pairs = alpha.zip(rotated_characters)
     Hash[pairs]

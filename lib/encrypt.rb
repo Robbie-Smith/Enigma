@@ -2,8 +2,8 @@ require 'pry'
 require './lib/cipher'
 
 class Encryptor
-  def initialize(string)
-    @cipher ||= Cipher.new
+  def initialize
+    @cipher = Cipher.new
   end
 
   def encrypt(string)
@@ -13,18 +13,21 @@ class Encryptor
     p @cipher.b_value[0] % 26
     p @cipher.c_value[0] % 26
     p @cipher.d_value[0] % 26
+      def crypt_key
+        @crypt_key = @cipher.key
+      end
     counter=0
     string.split(%r{\s*}).map do |letter|
-      if counter==0
+      if counter == 0
         counter+=1
         @cipher.encrypt_at_a(letter)
       elsif counter == 1
         counter+=1
         @cipher.encrypt_at_b(letter)
-      elsif counter ==2
+      elsif counter == 2
         counter+=1
         @cipher.encrypt_at_c(letter)
-      elsif counter==3
+      elsif counter == 3
         counter = 0
         @cipher.encrypt_at_d(letter)
       end
@@ -33,6 +36,8 @@ class Encryptor
 
 end
 
-@e = Encryptor.new("a")
-
+# if __FILE__ == $0
+@e = Encryptor.new
+p @cipher.key
 binding.pry
+# end

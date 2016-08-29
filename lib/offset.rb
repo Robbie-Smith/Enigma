@@ -30,8 +30,8 @@ class Offset
   end
 
   def offset
-    squared = offset_squared
-    offset_string = squared.to_s.chars
+    # squared = offset_squared
+    offset_string = offset_squared.to_s.chars
     offset_string.last(4)
   end
 
