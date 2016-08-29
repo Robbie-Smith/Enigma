@@ -1,46 +1,37 @@
 require 'pry'
-require_relative 'cipher'
+require './lib/cipher'
 
 class Encryptor
   def initialize
     @cipher = Cipher.new
-    @rotator_1 = @cipher.rotate_1
-    @rotator_2 = @cipher.rotate_2
-    @rotator_3 = @cipher.rotate_3
-    @rotator_4 = @cipher.rotate_4
   end
-  # def encrypt_at_a(letter)
-  #   @rotator_1.encrypt_at_a
-  # end
-  def encrypt(word)
-    word_split = word.upcase.split('')
-    new_word = []
-    word_split.each do |i|
-      array = []
-      array << @rotator_1[i]
-      array << @rotator_2[i + i]
-      # alpha << @rotator_3[word_split[i + 2]]
-      # alpha << @rotator_4[word_split[i + 3]]
-        return alpha
+
+  def encrypt(string)
+    p @cipher.key
+    p @cipher.offset
+    p @cipher.a_value[0] % 26
+    p @cipher.b_value[0] % 26
+    p @cipher.c_value[0] % 26
+    p @cipher.d_value[0] % 26
+      def crypt_key
+        @crypt_key = @cipher.key
+      end
+    counter=0
+    string.split(%r{\s*}).map do |letter|
+      if counter == 0
+        counter+=1
+        @cipher.encrypt_at_a(letter)
+      elsif counter == 1
+        counter+=1
+        @cipher.encrypt_at_b(letter)
+      elsif counter == 2
+        counter+=1
+        @cipher.encrypt_at_c(letter)
+      elsif counter == 3
+        counter = 0
+        @cipher.encrypt_at_d(letter)
+      end
     end
   end
 
-  # def encrypt_at_b(letter)
-  #   uppercase_letter = letter.upcase
-  #   rotate_b[uppercase_letter]
-  # end
-  #
-  # def encrypt_at_c(letter)
-  #   uppercase_letter = letter.upcase
-  #   rotate_c[uppercase_letter]
-  # end
-  #
-  # def encrypt_at_d(letter)
-  #   uppercase_letter = letter.upcase
-  #   rotate_d[uppercase_letter]
-  # end
 end
-
-e = Encryptor.new
-# e.rotate_a
-e.encrypt("HellomynameisRobbie.")
