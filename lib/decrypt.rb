@@ -37,10 +37,10 @@ class Decrypt
         @library_4.key(letter)
       end
     end
-    word.join
+    puts "#{word.join}"
   end
 end
 
 d = Decrypt.new
-d.reset(61,79,25,69)
-d.decrypt("QFKCX")
+d.reset(72,21,66,51)
+decrypt = d.decrypt("GVUFCZ")
