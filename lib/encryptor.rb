@@ -6,7 +6,7 @@ class Encryptor
   def initialize
     @cipher = Cipher.new
 
-    # @offset = Offset.new                                   # => #<Offset:0x007faac3b040f8 @time=2016-08-30 17:41:18 -0600>
+    # @offset = Offset.new                                  
     @alpha = @cipher.alpha
   end
 
