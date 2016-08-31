@@ -1,13 +1,12 @@
 require 'pry'
-require_relative 'encrypt'
+require_relative 'encryptor'
 
-class Decrypt
+class Decryptor
   attr_reader :library
   def initialize
     @cipher = Cipher.new
     @alpha = @cipher.alpha
   end
-
 
   def reset(num_1,num_2,num_3,num_4)
     rotated_characters = @alpha.rotate(num_1)
@@ -21,6 +20,7 @@ class Decrypt
   end
 
   def decrypt(new_word)
+    # binding.pry
     counter=0
   word = new_word.split(%r{\s*}).map! do |letter|
       if counter == 0
@@ -38,9 +38,12 @@ class Decrypt
       end
     end
     puts "#{word.join}"
+    # binding.pry
   end
 end
-
-d = Decrypt.new
-d.reset(72,21,66,51)
-decrypt = d.decrypt("GVUFCZ")
+# binding.pry
+# d = Decrypt.new
+# d.reset(72,21,66,51)
+# decrypt = d.decrypt("GVUFCZ")
+# d.reset(39,30,60,14)
+# d.decrypt ("UITZBAWFYH")
