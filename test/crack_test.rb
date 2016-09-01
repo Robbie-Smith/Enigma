@@ -1,4 +1,4 @@
-require 'simplecov'         
+require 'simplecov'
 SimpleCov.start
 require './lib/crack'
 require 'minitest/pride'
@@ -17,6 +17,15 @@ class CrackTest < Minitest::Test
     c.alpha
 
     assert_equal c.alpha[0..59], (' '..'Z').to_a
+  end
+
+  def test_can_we_split
+    skip
+    c = Crack.new
+    c.alpha
+
+
+    assert_equal [''], c.split('00000')
   end
 
 end

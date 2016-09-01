@@ -25,3 +25,5 @@ class Enigma
     @crack.crack(word_or_file)
   end
 end
+# e = Enigma.new
+# e.encrypt('END')

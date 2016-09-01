@@ -38,15 +38,10 @@ class EnigmaTest < Minitest::Test
     refute_equal "Hello", e.encrypt("Hello")
   end
 
-  def test_can_encrypt_use_a_manual_key
-    skip
-    e = Enigma.new
-  end
-
   def test_can_we_decrypt
     e = Enigma.new
 
-    assert_equal "END", e.decrypt('LPD','07282671')
+    assert_equal "END", e.decrypt('L!)','66149188')
   end
 
 end

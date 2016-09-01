@@ -34,3 +34,5 @@ class Encryptor
     new_word.join
   end
 end
+# e = Encryptor.new
+# e.encrypt("END")

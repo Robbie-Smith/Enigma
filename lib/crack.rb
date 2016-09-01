@@ -4,7 +4,7 @@ require_relative 'cipher'
 require_relative 'offset'
 
 class Crack
-  attr_reader :library, :alpha, :word, :reset_key
+  attr_reader :library, :alpha, :word, :reset_key, :split
   attr_accessor :key
 
   def initialize
@@ -31,7 +31,7 @@ class Crack
   end
 
   def split(key)
-      split = key.chars
+      @split = key.chars
       @reset_key = Array.new
       @reset_key << split.join[0] + split.join[1]
       @reset_key << split.join[1] + split.join[2]
@@ -84,4 +84,4 @@ class Crack
   end
 end
 # c = Crack.new
-# c.crack('R?9')
+# c.crack('I4N')
