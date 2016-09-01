@@ -2,25 +2,37 @@ require 'pry'
 require_relative 'encryptor'
 
 class Decryptor
-  attr_reader :library
+  attr_reader :library, :reset_key
+  attr_accessor :word
   def initialize
     @cipher = Cipher.new
     @alpha = @cipher.alpha
   end
 
-  def reset(num_1,num_2,num_3,num_4)
-    rotated_characters = @alpha.rotate(num_1)
+  def split(key)
+      split = key.chars
+      @reset_key = Array.new
+      @reset_key << split.join[0] + split.join[1]
+      @reset_key << split.join[2] + split.join[3]
+      @reset_key << split.join[4] + split.join[5]
+      @reset_key << split.join[6] + split.join[7]
+      @reset_key.map! {|i| i.to_i}
+    reset
+  end
+
+  def reset
+    rotated_characters = @alpha.rotate(@reset_key[0])
     @library_1 = @alpha.zip(rotated_characters).to_h
-    rotated_characters = @alpha.rotate(num_2)
+    rotated_characters = @alpha.rotate(@reset_key[1])
     @library_2 = @alpha.zip(rotated_characters).to_h
-    rotated_characters = @alpha.rotate(num_3)
+    rotated_characters = @alpha.rotate(@reset_key[2])
     @library_3 = @alpha.zip(rotated_characters).to_h
-    rotated_characters = @alpha.rotate(num_4)
+    rotated_characters = @alpha.rotate(@reset_key[3])
     @library_4 = @alpha.zip(rotated_characters).to_h
   end
 
-  def decrypt(new_word)
-    # binding.pry
+  def decrypt(new_word, key)
+    split(key)
     counter=0
   word = new_word.split(%r{\s*}).map! do |letter|
       if counter == 0
@@ -38,12 +50,6 @@ class Decryptor
       end
     end
     puts "#{word.join}"
-    # binding.pry
+    return word.join
   end
 end
-# binding.pry
-# d = Decrypt.new
-# d.reset(72,21,66,51)
-# decrypt = d.decrypt("GVUFCZ")
-# d.reset(39,30,60,14)
-# d.decrypt ("UITZBAWFYH")

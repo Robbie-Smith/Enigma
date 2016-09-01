@@ -1,91 +1,76 @@
-require 'pry'
-require_relative 'final_key'
+require 'pry'                 # => true
+require_relative 'final_key'  # => true
 
 class Cipher
-  attr_reader :offset, :keygen, :key, :final_key, :characters
-  attr_accessor :pairs
+  attr_reader :offset, :keygen, :key, :final_key, :characters, :pairs  # => nil
+
 
   def initialize
-    @key = FinalKey.new
-    @first_key = @key.combine
-    @final_key = @key.final_key
+    @key = FinalKey.new                # => #<FinalKey:0x007fe22482e868 @key=#<KeyGen:0x007fe22482e840>, @offset=#<Offset:0x007fe22482e818 @time=2016-09-01 00:22:38 -0600, @square=nil, @date=nil>, @first_key=[], @offset_holder=[], @final_key=[]>
+    @first_key = @key.combine          # => [85, 15, 58, 58]
+    @final_key = @key.final_key        # ~> TypeError: nil can't be coerced into Fixnum
+    @user_key = KeyGen.new
+    @manual_key = @user_key.key_gen()
     @pairs = pairs
-  end
+  end                                  # => :initialize
 
   def alpha
-    @characters = ('A'..'Z').to_a
-  end
+    @characters = (' '..'Z').to_a
+  end                              # => :alpha
 
-  def rotate_1(num_1 = 0)
-    if num_1 == 0
+  def rotate_1
       rotated_characters = alpha.rotate(@final_key[0])
       @pairs = alpha.zip(rotated_characters).to_h
-    else
-      rotated_characters = alpha.rotate(num_1)
-      @pairs = alpha.zip(rotated_characters).to_h
-    end
-    return @pairs
-  end
+  end                                                   # => :rotate_1
 
-  def rotate_2(num_2 = 0)
-    if num_2 == 0
+  def rotate_2
       rotated_characters = alpha.rotate(@final_key[1])
       @pairs = alpha.zip(rotated_characters).to_h
-    else
-      rotated_characters = alpha.rotate(num_2)
-      @pairs = alpha.zip(rotated_characters).to_h
-    end
-  end
+  end                                                   # => :rotate_2
 
-  def rotate_3(num_3 = 0)
-    if num_3 == 0
+  def rotate_3
       rotated_characters = alpha.rotate(@final_key[2])
       @pairs = alpha.zip(rotated_characters).to_h
-    else
-      rotated_characters = alpha.rotate(num_3)
-      @pairs = alpha.zip(rotated_characters).to_h
-    end
-  end
+  end                                                   # => :rotate_3
 
-  def rotate_4(num_4 = 0)
-    if num_4 == 0
+  def rotate_4
       rotated_characters = alpha.rotate(@final_key[3])
       @pairs = alpha.zip(rotated_characters).to_h
-    else
-      rotated_characters = alpha.rotate(num_4)
-      @pairs = alpha.zip(rotated_characters).to_h
-    end
-  end
+  end                                                   # => :rotate_4
 
   def encrypt_at_1(letter)
     @pairs[letter.upcase]
-  end
+  end                       # => :encrypt_at_1
 
   def encrypt_at_2(letter)
     @pairs[letter.upcase]
-  end
+  end                       # => :encrypt_at_2
 
   def encrypt_at_3(letter)
     @pairs[letter.upcase]
-  end
+  end                       # => :encrypt_at_3
 
   def encrypt_at_4(letter)
     @pairs[letter.upcase]
-  end
+  end                       # => :encrypt_at_4
 
   def print_key
-    @first_key
-    @final_key = @key.final_key
+    puts "#{@final_key}"
     return @final_key
-  end
+  end                     # => :print_key
 
-end
+end              # => :print_key
+# c = Cipher.new
+# c.rotate_1('A')
 
-c = Cipher.new
-
-c.alpha
-c.rotate_1
-a = c.rotate_1.fetch_values("A")
-a[0]
-c.encrypt_at_1("A")
-c.print_key
+# ~> TypeError
+# ~> nil can't be coerced into Fixnum
+# ~>
+# ~> /Users/robertsmith/Turing/1module/Enigma/lib/final_key.rb:28:in `+'
+# ~> /Users/robertsmith/Turing/1module/Enigma/lib/final_key.rb:28:in `block in final_key'
+# ~> /Users/robertsmith/Turing/1module/Enigma/lib/final_key.rb:27:in `map'
+# ~> /Users/robertsmith/Turing/1module/Enigma/lib/final_key.rb:27:in `with_index'
+# ~> /Users/robertsmith/Turing/1module/Enigma/lib/final_key.rb:27:in `final_key'
+# ~> /Users/robertsmith/Turing/1module/Enigma/lib/cipher.rb:11:in `initialize'
+# ~> /Users/robertsmith/Turing/1module/Enigma/lib/cipher.rb:63:in `new'
+# ~> /Users/robertsmith/Turing/1module/Enigma/lib/cipher.rb:63:in `<main>'
