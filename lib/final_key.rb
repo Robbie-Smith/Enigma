@@ -30,6 +30,3 @@ class FinalKey
     return @final_key
   end
 end
-f = FinalKey.new
-f.combine
-f.final_key

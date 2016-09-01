@@ -20,7 +20,3 @@ class Offset
     @offset.map! {|num| num.to_i}
   end
 end
-
-o = Offset.new
-o.squaring_function
-o.offset

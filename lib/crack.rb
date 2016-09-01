@@ -83,3 +83,5 @@ class Crack
     return word.join
   end
 end
+# c = Crack.new
+# c.crack('R?9')

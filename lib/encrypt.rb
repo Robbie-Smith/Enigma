@@ -1,4 +1,5 @@
 require './lib/encryptor'
+
 read_from = ARGV[0]
 encrypt_to = ARGV[1]
 
