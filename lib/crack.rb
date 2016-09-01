@@ -19,7 +19,6 @@ class Crack
 
   def crack(word)
     @word = word
-    # 0.upto(99999) do |key|
     99999.times do |key|
       temp_array = Array.new
       key = key.to_s.rjust(5,'0')
@@ -27,8 +26,6 @@ class Crack
       if cracked_message[-3..-1] == "END"
         puts "#{cracked_message} + #{key}"
         return cracked_message
-
-      # return temp_array = [temp_message,temp_key] if temp_message[-7..-1] == 'END'
       end
     end
   end
@@ -86,7 +83,3 @@ class Crack
     return word.join
   end
 end
-
-
-# c = Crack.new
-# c.other("JBS")
