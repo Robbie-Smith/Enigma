@@ -5,12 +5,15 @@ class Encryptor
 
   def initialize
     @cipher = Cipher.new
-    @alpha = @cipher.alpha
+  end
+
+  def encryptable_characters
+    contents.split(%r{\s*})
   end
 
   def encrypt(contents)
     counter=0
-    new_word = contents.split(%r{\s*}).map do |letter|
+    new_word = encryptable_characters(contents).map do |letter|
       if counter == 0
         counter+=1
         @cipher.rotate_1

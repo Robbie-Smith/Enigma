@@ -11,6 +11,7 @@ class Cipher
     @final_key = @key.final_key
     @user_key = KeyGen.new
     @pairs = pairs
+    alpha
   end
 
   def alpha
