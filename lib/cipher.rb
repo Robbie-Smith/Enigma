@@ -6,11 +6,8 @@ class Cipher
 
 
   def initialize
-    @key = FinalKey.new
-    @combine = @key.combine
-    @final_key = @key.final_key
+    @final_key = FinalKey.new.final_key
     @user_key = KeyGen.new
-    @pairs = pairs
     alpha
   end
 
@@ -39,19 +36,19 @@ class Cipher
   end
 
   def encrypt_at_1(letter)
-    @pairs[letter.upcase]
+    pairs[letter.upcase]
   end
 
   def encrypt_at_2(letter)
-    @pairs[letter.upcase]
+    pairs[letter.upcase]
   end
 
   def encrypt_at_3(letter)
-    @pairs[letter.upcase]
+    pairs[letter.upcase]
   end
 
   def encrypt_at_4(letter)
-    @pairs[letter.upcase]
+    pairs[letter.upcase]
   end
 
   def print_key

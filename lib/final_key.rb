@@ -3,21 +3,24 @@ require_relative 'offset'
 require 'pry'
 
 class FinalKey
-  attr_reader :crypted_word, :letters, :first_key, :key
+  attr_reader :first_key
+
   def initialize
     @key = KeyGen.new
     @offset = Offset.new
     @first_key = Array.new
     @offset_holder = Array.new
+    combine
   end
 
   def combine
-    first_key << key.key_gen.join[0] + key.key_gen.join[1]
-    first_key << key.key_gen.join[1] + key.key_gen.join[2]
-    first_key << key.key_gen.join[2] + key.key_gen.join[3]
-    first_key << key.key_gen.join[3] + key.key_gen.join[4]
-    first_key.map! {|num| num.to_i}
-    return first_key
+
+    @first_key << @key.key_gen.join[0] + @key.key_gen.join[1]
+    @first_key << @key.key_gen.join[1] + @key.key_gen.join[2]
+    @first_key << @key.key_gen.join[2] + @key.key_gen.join[3]
+    @first_key << @key.key_gen.join[3] + @key.key_gen.join[4]
+    @first_key.map! {|num| num.to_i}
+    # return @first_key
   end
 
   def final_key

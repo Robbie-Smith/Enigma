@@ -18,16 +18,13 @@ class Crack
   end
 
   def crack(word)
-    binding.pry
     @word = word
     99999.times do |key|
-      temp_array = Array.new
       key = key.to_s.rjust(5,'0')
       cracked_message = decrypt(word, key)
       if cracked_message[-3..-1] == "END"
         puts "#{cracked_message} + #{key}"
         return cracked_message
-    binding.pry
       end
     end
   end
@@ -85,5 +82,3 @@ class Crack
     return word.join
   end
 end
-c = Crack.new
-c.crack('I4N')

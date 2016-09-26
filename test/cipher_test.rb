@@ -14,7 +14,7 @@ class RotateTest < Minitest::Test
 
   def test_does_rotate_1_randomnly_rotate_correctly
     c = Cipher.new
-    
+
     letter = c.rotate_1.fetch_values("A")
     assert_equal letter[0], c.encrypt_at_1("A")
 

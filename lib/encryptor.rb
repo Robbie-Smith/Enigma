@@ -7,7 +7,7 @@ class Encryptor
     @cipher = Cipher.new
   end
 
-  def encryptable_characters
+  def encryptable_characters(contents)
     contents.split(%r{\s*})
   end
 
@@ -37,5 +37,3 @@ class Encryptor
     new_word.join
   end
 end
-# e = Encryptor.new
-# e.encrypt("END")

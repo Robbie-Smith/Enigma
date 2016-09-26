@@ -21,10 +21,9 @@ class OffsetTest < Minitest::Test
   def test_offset
     n = Offset.new
     n.squaring_function
-    n.offset
 
     assert_instance_of Array, n.offset
-    assert_equal 4, n.offset.length
+    assert_equal 6, n.offset.length
   end
 
 end
