@@ -1,5 +1,3 @@
-require 'simplecov'
-SimpleCov.start
 require './lib/enigma'
 require 'minitest/pride'
 require 'minitest/autorun'
@@ -7,30 +5,10 @@ require 'pry'
 
 class EnigmaTest < Minitest::Test
 
-  def test_instance_of_enigma
+  def test_call_rotator
     e = Enigma.new
-    assert_instance_of Enigma, e
-  end
-
-  def test_instance_of_encryptor
-    e = Enigma.new
-    assert_instance_of Encryptor, e.encrypt_word
-  end
-
-  def test_instance_of_decryptor
-    e = Enigma.new
-    assert_instance_of Decryptor, e.decrypt_word
-  end
-
-  def test_instance_of_cipher
-    e = Enigma.new
-    assert_instance_of Cipher, e.cipher
-  end
-
-  def test_call_cipher
-    e = Enigma.new
-    refute nil, e.cipher.final_key
-    assert_equal 4, e.cipher.final_key.length
+    refute nil, e.rotator.final_key
+    assert_equal 4, e.rotator.final_key.length
   end
 
   def test_can_we_encrypt
@@ -41,7 +19,7 @@ class EnigmaTest < Minitest::Test
   def test_can_we_decrypt
     e = Enigma.new
 
-    assert_equal "END", e.decrypt('L!)','66149188')
+    assert_equal "End", e.decrypt('T03','15294254')
   end
 
 end

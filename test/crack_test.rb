@@ -1,31 +1,20 @@
-require 'simplecov'
-SimpleCov.start
 require './lib/crack'
 require 'minitest/pride'
 require 'minitest/autorun'
 require 'pry'
 
 class CrackTest < Minitest::Test
-  def test_does_crack_exist
-    c = Crack.new
+  def setup
+    user_key = [12, 23, 34, 45]
+    encryptor = Encryptor.new(user_key)
 
-    assert_instance_of Crack, c
+    @encrypted_word = encryptor.encrypt("the...end...")
   end
-
-  def test_do_we_have_a_library
+  def test_can_it_crack
     c = Crack.new
-    c.alpha
 
-    assert_equal c.alpha[0..59], (' '..'Z').to_a
-  end
-
-  def test_can_we_split
-    skip
-    c = Crack.new
-    c.alpha
-
-
-    assert_equal [''], c.split('00000')
+    #key = [15, 29, 42, 5]
+    assert_equal 'the end', c.crack(@encrypted_word)
   end
 
 end

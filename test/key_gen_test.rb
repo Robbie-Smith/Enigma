@@ -1,25 +1,33 @@
-require 'simplecov'
-SimpleCov.start
+
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/key_gen'
 
 class KeyGenTest < Minitest::Test
 
-  def test_generate_an_array_of_numbers
+  def test_key_should_be_an_array
     k = KeyGen.new
-    assert_instance_of Array, k.key_gen
+
+    assert_instance_of Array, k.generate_random_key
   end
 
   def test_length_of_array
     k = KeyGen.new
-    assert_equal 5, k.key_gen.length
+    assert_equal 5, k.generate_random_key.length
   end
 
-  def test_random
+  def test_key_should_contain_the_numbers_one_through_five
     k = KeyGen.new
 
-    refute_equal [1,2,3,4,5] , k.key_gen
+    k.generate_random_key.each do |num|
+      assert_includes [*"0".."9"], num
+    end
   end
 
+  def test_format_key
+    user_key = "12345"
+    k = KeyGen.new(user_key)
+
+    assert_equal [12, 23, 34, 45], k.key
+  end
 end
