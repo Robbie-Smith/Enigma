@@ -36,5 +36,3 @@ coverage/index.html
 lib/cipher_2.rb
 
 lib/encrypt_two.rb
-
-test/test_helper.rb

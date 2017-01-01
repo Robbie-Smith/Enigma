@@ -3,32 +3,19 @@ require_relative 'offset'
 require 'pry'
 
 class FinalKey
-  attr_reader :first_key
+  attr_reader :first_key,
+              :key,
+              :offset
 
-  def initialize
-    @key = KeyGen.new
-    @offset = Offset.new
-    @first_key = Array.new
-    @offset_holder = Array.new
+  def initialize(first_key = nil,offset = nil)
+    @first_key = first_key || KeyGen.new.key
+    @offset = offset || OffsetGenerator.new.offset
     combine
   end
 
   def combine
-
-    @first_key << @key.key_gen.join[0] + @key.key_gen.join[1]
-    @first_key << @key.key_gen.join[1] + @key.key_gen.join[2]
-    @first_key << @key.key_gen.join[2] + @key.key_gen.join[3]
-    @first_key << @key.key_gen.join[3] + @key.key_gen.join[4]
-    @first_key.map! {|num| num.to_i}
-    # return @first_key
-  end
-
-  def final_key
-    @offset.squaring_function
-    @offset_holder = @offset.offset
-    @final_key = @first_key.map.with_index do |value,index|
-              value + @offset_holder[index]
-            end
-    return @final_key
+    @key = first_key.map.with_index do |num, index|
+      num + offset[index]
+    end
   end
 end
