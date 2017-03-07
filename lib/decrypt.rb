@@ -9,6 +9,6 @@ e = Decryptor.new
 
 decrypted_text = e.decrypt(input, key)
 
-output = File.write(decrypt_to, decrypted_text)
+File.write(decrypt_to, decrypted_text)
 
 p decrypted_text

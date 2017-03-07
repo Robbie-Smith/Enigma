@@ -33,10 +33,6 @@ coverage/assets/0.10.0/loading.gif
 
 coverage/index.html
 
-lib/cipher_2.rb
-
-lib/encrypt_two.rb
-
 test/test_helper.rb
 
 .DS_Store
